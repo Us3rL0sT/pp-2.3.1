@@ -42,7 +42,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
 //    @Transactional
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers(){ /** в этом методе возникает ошибка: org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createQuery(String, java.lang.Class)" because "this.entityManager" is null
+        что тут не так, я не могу понять **/
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 }
