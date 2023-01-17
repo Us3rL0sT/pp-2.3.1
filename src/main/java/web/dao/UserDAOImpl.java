@@ -31,12 +31,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void removeUser(int id) {
-        User user = getUserByID(id);
+        User user = getUserById(id);
         entityManager.remove(user);
     }
 
     @Override
-    public User getUserByID(int id) {
+    public User getUserById(int id) {
         return entityManager.find(User.class, id);
     }
 
@@ -45,6 +45,7 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getAllUsers(){ /** в этом методе возникает ошибка: org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createQuery(String, java.lang.Class)" because "this.entityManager" is null
         что тут не так, я не могу понять **/
         return entityManager.createQuery("FROM User", User.class).getResultList();
+
     }
 }
 
